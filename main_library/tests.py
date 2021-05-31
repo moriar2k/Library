@@ -14,8 +14,6 @@ class HomePageTest(TestCase):
 
 	def test_home_page_returns_correct_html(self):
 		request = HttpRequest()
-		response = home_page(request)
-		self.assertTrue(response.content.startswith(b'<html>'))
-		self.assertIn(b'<title>Backend Library Project</title>', response.content)
-		self.assertIn(b'<h1>Backend Library Project</h1>', response.content)
-		self.assertTrue(response.content.endswith(b'</html>'))
+		# response = home_page(request)
+		response = self.client.get('/')
+		self.assertTemplateUsed(response, 'home.html')
