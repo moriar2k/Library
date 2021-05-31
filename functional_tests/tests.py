@@ -25,11 +25,12 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
 		# Użytkownik wchodząc na stronę główną otrzymuje komunikat o możliwości przeglądania serwisu bez rejestracji oraz okienko do 
 		# rejestracji/logowania na stronę biblioteki, w celu korzystania z innych możliwości serwisu.
+		
+		"""
 		link = self.browser.find_element_by_tag_name('href').text
 		self.assertIn('Przeglądaj księgozbiór biblioteki bez logowania', link)
+		"""
 		self.fail('Zakończenie testu!')
-
-
 
 
 
