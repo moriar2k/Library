@@ -1,10 +1,38 @@
-<html>
-<head>
-	<title>Backend Library Project</title>
-</head>
-<body>
-	<h1>Backend Library Project</h1>
-	<a href="http://127.0.0.1:8000/view_all">View library collection wo signing in</a>
-</script>
-</body>
-</html>
+{% extends "main_library/base.html" %}
+{% block content %}
+
+<div class="row" style="background-color: #ECEBE8; font-family:Vontana">
+    <div class="col-md-7" align="center">
+        <h1> <b> Witamy na stronie naszej biblioteki </b> </h1>
+    </div>
+    <div class="class-md-2"> <h3> <a style="color:#AE8E48" href="/login" target="blank"><strong>zaloguj</strong></a> </h3> </div>
+<!--    #AE8E48-->
+</div>
+<br><br>
+
+<div class="row" style = "backgroundcolor: #F9F8F7">
+    <div class = "col-md-3 text-right">
+        <div class="thumbnail">
+            <a href = "/index">
+                <img src="https://s2982.pcdn.co/wp-content/uploads/2014/09/book-with-coffee-e1412099237442.jpg" alt = "Lights" >
+                <div class = "caption" align="center">
+                    <p> Sprawdź wszystkie nasze książki! </p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class = "col-md-8" >
+        <blockquote>
+            <p>
+                Ze wszystkich rzeczy, których wymaga się od książki najważniejszą jest, żeby nadawała się do czytania
+            </p>
+            <footer> Anthony Trollope </footer>
+        </blockquote>
+
+    </div>
+
+</div>
+
+<br><br>
+
+{% endblock %}

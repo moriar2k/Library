@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import unittest
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-
+import unittest
 
 
 class NewVisitorTest(StaticLiveServerTestCase):
