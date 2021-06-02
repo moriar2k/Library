@@ -16,4 +16,4 @@ class HomePageTest(TestCase):
 		request = HttpRequest()
 		# response = home_page(request)
 		response = self.client.get('/')
-		self.assertTemplateUsed(response, 'home.html')
+		self.assertTemplateUsed(response, 'home_page.html')
