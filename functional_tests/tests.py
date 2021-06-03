@@ -4,7 +4,10 @@ import unittest
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import unittest
 
+"""
+CZĘŚĆ TESETÓW ODPOWAIDAJĄCA ZA PRZEGLĄDANIE STRONY GŁÓWNEJ
 
+"""
 class NewVisitorTest(StaticLiveServerTestCase):
 
 	def setUp(self):
@@ -44,4 +47,24 @@ class NewVisitorTest(StaticLiveServerTestCase):
 # "Przeglądaj księgozbiór biblioteki bez logowania"
 
 
-# 
+"""
+CZĘŚĆ TESTÓW ODPOWIADAJĄCA ZA PRZEGLĄDANIE I FILTROWANIE KSIĘGOZBIORU
+"""
+
+"""
+CZĘŚC TESTÓW ODPOWIADAJĄCA ZA LOGOWANIE I REJESTRACJĘ
+"""
+
+"""
+CZĘŚĆ TESTÓW ODPOWIADAJĄCA ZA WYPOŻYCZANIE I ODDAWANIE KSIĄŻEK
+"""
+
+"""
+CZĘŚĆ TESTÓW ODPOWIADAJĄCA ZA MOŻLIWOŚĆ ZRECENZOWANIA PRZECZYTANYCH KSIĄŻEK
+"""
+
+"""
+CZĘŚĆ TESTÓW ODPOWIADAJĄCA ZA MOŻLIWOŚĆ ZARZĄDZANIA KSIĘGOZBIOREM - USUWANIE I DODAWANIE EGZEMPLAŻY, 
+WYCOFYWANIE KSIĄZEK Z LISTY DOSTĘPNYCH DO WYPORZYCZENIA ITP.
+"""
+
