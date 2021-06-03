@@ -16,7 +16,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
 	def test_home_page_visit(self):
 		# Użytkownik wchodzi na stronę główną
-		self.browser.get('http://127.0.0.1:8000')
+		self.browser.get(self.live_server_url)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 
 		# Tytuł i nagłówek strony głównej zawierają nazwę "Backend Library Project"
