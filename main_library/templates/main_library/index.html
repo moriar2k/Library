@@ -15,15 +15,92 @@
     <br><br>
 
 </div>
-<div class="row" style = "backgroundcolor: #F9F8F7">
-    <div class = "col-md-1"></div>
-    <div class = "col-md-3" align = "left">
 
-<!--        <ul>-->
-<!--            {% for n in all_books %}-->
-<!--            <li>{{ n }} </li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <form method="get">
+             {{ table_filter.form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span> Search
+          </button>
+        </form>
+        <table class="table table-dark table-striped" >
+            <thead>
+              <tr>
+                  <th>Tytuł</th>
+                  <th>Autor</th>
+                  <th>Gatunek</th>
+                  <th>Rodzaj</th>
+                  <th>Epoka</th>
+              </tr>
+            </thead>
+                {% for n in table_filter.qs %}
+                <tr>
+                    <td>{{ n.title }} </td>
+                    <td> {{ n.author }}</td>
+                    <td> {{ n.genre }} </td>
+                    <td> {{ n.kind }} </td>
+                    <td> {{ n.epoch }} </td>
+                </tr>
+                {% endfor %}
+        </table>
     </div>
 </div>
+
+
+<!--<div class="row" style = "backgroundcolor: #F9F8F7">-->
+<!--    <div class = "col-md-1"></div>-->
+<!--    <div class = "col-md-3" align = "left">-->
+<!--        <table class="table table-dark table-striped" >-->
+<!--            <thead>-->
+<!--              <tr>-->
+<!--                  <th>Tytuł</th>-->
+<!--                  <th>Autor</th>-->
+<!--                  <th>Gatunek</th>-->
+<!--              </tr>-->
+<!--            </thead>-->
+<!--                {% for n in all_books %}-->
+<!--                <tr>-->
+<!--                    <td>{{ n.title }} </td>-->
+<!--                    <td> {{ n.author }}</td>-->
+<!--                    <td> {{ n.genre }} </td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</div>-->
 {% endblock %}
+
+
+
+
+<!--<div class="container">-->
+<!--  <h2 class="text-center"><u>20 - Startups Table</u></h2><br>-->
+<!--  <table class="table table-dark table-striped">-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th>R&D Spend</th>-->
+<!--        <th>Administration</th>-->
+<!--        <th>Marketing Spend</th>-->
+<!--        <th>State</th>-->
+<!--        <th>Profit</th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    &lt;!&ndash; jinja2 Technique &ndash;&gt;-->
+<!--    {% if d %}-->
+<!--    {% for i in d %}-->
+<!--      <tr>-->
+<!--        <td>{{i.RD_Spend}}</td>-->
+<!--        <td>{{i.Administration}}</td>-->
+<!--        <td>{{i.Marketing_Spend}}</td>-->
+<!--        <td>{{i.State}}</td>-->
+<!--        <td>{{i.Profit}}</td>-->
+<!--      </tr>-->
+<!--    {% endfor %}-->
+<!--    {% endif %}-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</div>-->
