@@ -3,3 +3,4 @@ django-filter
 ipython
 selenium
 unittest
+urlparse
