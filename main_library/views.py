@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .forms import NewUserForm
 from .models import Bookshelf
 from django.contrib.auth.models import User
 from .filters import UserFilter
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
+
 
 # Create your views here.
 def home_page(request):
@@ -12,7 +15,7 @@ def home_page(request):
 
 
 def index(request):
-    obj = Bookshelf.objects.values('title', 'author', 'genre','kind', 'epoch', 'quantity', 'id')
+    obj = Bookshelf.objects.values('title', 'author', 'genre', 'kind', 'epoch', 'quantity', 'id')
     table_filter = UserFilter(request.GET, queryset=obj)
     # obj = myFilter.qs
     return render(
@@ -20,6 +23,7 @@ def index(request):
         'main_library/index.html',
         {'all_books': obj, 'table_filter': table_filter}
     )
+
 
 def wypozycz(request, id):
     return render(
@@ -40,6 +44,19 @@ def login_request(request):
                 login(request, user)
                 return redirect('/')
     form = AuthenticationForm()
-    return render(request = request,
-                    template_name = "main_library/login.html",
-                    context={"form":form})
+    return render(request=request,
+                  template_name="main_library/login.html",
+                  context={"form": form})
+
+
+def register_request(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("main_library:homepage")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = NewUserForm
+    return render(request=request, template_name="main_library/register.html", context={"register_form": form})
