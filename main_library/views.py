@@ -55,8 +55,8 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration successful.")
-            return redirect("main_library:homepage")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
+            messages.success(request, "Rejestracja powiodła się.")
+            return redirect("home_page")
+        messages.error(request, "Ups coś poszło nie tak.")
     form = NewUserForm
     return render(request=request, template_name="main_library/register.html", context={"register_form": form})

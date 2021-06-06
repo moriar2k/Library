@@ -2,16 +2,17 @@
 
 {% block content %} 
 
+{% load crispy_forms_tags %}
 
 <!--Register--> 
 <div class="container py-5">
-	<h1>Register</h1>
+	<h1>Rejestracja użytkownika</h1>
 	<form method="POST">
 		{% csrf_token %}
-		{{ register_form }}
-		<button class="btn btn-primary" type="submit">Register</button>
+		{{ register_form|crispy }}
+		<button class="btn btn-primary" type="submit">Zatwierdź</button>
 	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+	<p class="text-center">Jeśli jednak masz już konto, <a href="/login"><u>naduś tutaj</u></a> lepiej.</p>
 </div>
 
 {% endblock %}
