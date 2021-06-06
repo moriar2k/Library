@@ -34,6 +34,8 @@
                   <th>Gatunek</th>
                   <th>Rodzaj</th>
                   <th>Epoka</th>
+                  <th>Ilość dostępnych książek</th>
+                  <th> Wypozycz</th>
               </tr>
             </thead>
                 {% for n in table_filter.qs %}
@@ -43,6 +45,8 @@
                     <td> {{ n.genre }} </td>
                     <td> {{ n.kind }} </td>
                     <td> {{ n.epoch }} </td>
+                    <td> {{ n.quantity }} </td>
+                    <td> <a href="{% url 'wypozycz' n.id %}/"> Wypożycz </a> </td>
                 </tr>
                 {% endfor %}
         </table>
