@@ -1,0 +1,19 @@
+{% extends 'main_library/base.html' %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}
+
+<!--Register--> 
+<div class="container py-5">
+	<h1>Rejestracja użytkownika</h1>
+	<p>* (gwiazdka) - to pola wymagane </p>
+	<form method="POST">
+		{% csrf_token %}
+		{{ register_form|crispy }}
+		<button class="btn btn-primary" type="submit">Zatwierdź</button>
+	</form>
+	<p class="text-center">Jeśli jednak masz już konto, <a href="/login"><u>naduś tutaj</u></a> lepiej.</p>
+</div>
+
+{% endblock %}

@@ -1,8 +1,8 @@
 {% extends "main_library/base.html" %}
 {% block content %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -67,12 +67,19 @@ body {
   display: block;
 }
 </style>
-
+</head>
+<body>
 
 <div class="navbar">
   <a href="#home">Biblioteka</a>
-  <a href="/login"">Logowanie</a>
-  <a href="/index">Zbior książek</a>
+  <div class="subnav">
+    <button class="subnavbtn">Uzykownik <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="/login"">Logowanie</a>
+      <a href="/register">Rejestracja</a>
+    </div>
+  </div>
+  <a href="/index">Zbior</a>
   <a href="/register">Rejestracja</a>
 </div>
 
@@ -81,4 +88,4 @@ body {
   <p>testy</p>
 </div>
 
-{% endblock %}
+</body>
