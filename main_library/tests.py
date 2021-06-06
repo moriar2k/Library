@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
+from urllib.parse import urljoin
 from main_library.models import Bookshelf
+import main_library.admin
 
 from main_library.views import home_page
 
@@ -17,7 +19,13 @@ class HomePageTest(TestCase):
 		request = HttpRequest()
 		# response = home_page(request)
 		response = self.client.get('/')
-		self.assertTemplateUsed(response, 'home_page.html')
+		self.assertTemplateUsed(response, 'main_library/base.html')
+
+class Adding_n_deleting_books_admin_view(TestCase):
+
+	def test_admin_view_displays_table_of_books_with_it_properties(self):
+		pass
+
 
 
 

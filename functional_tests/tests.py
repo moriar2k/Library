@@ -105,4 +105,10 @@ class ManageBookshelfTest(StaticLiveServerTestCase):
 		view.click()
 		print(self.browser.current_url)
 
+		tabel_headers = self.browser.find_element_by_xpath("//*[@class='column-__str__']/div[@class='text']").text
+		self.assertIn('BOOKSHELF', tabel_headers)
+
+		
+
+
 		self.fail('Zakończenie testu!')
