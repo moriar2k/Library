@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from .filters import UserFilter
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -24,7 +25,7 @@ def index(request):
         {'all_books': obj, 'table_filter': table_filter}
     )
 
-
+@login_required
 def wypozycz(request, id):
     return render(
         request,
@@ -60,3 +61,8 @@ def register_request(request):
         messages.error(request, "Ups coś poszło nie tak.")
     form = NewUserForm
     return render(request=request, template_name="main_library/register.html", context={"register_form": form})
+
+
+def logout_request(request):
+    logout(request)
+    return render(request, 'main_library/home_page.html', {})
