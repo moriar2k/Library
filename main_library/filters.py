@@ -7,9 +7,9 @@ from django import forms
 
 class UserFilter(django_filters.FilterSet):
 
-    title = django_filters.CharFilter(lookup_expr='icontains')
-    author = django_filters.CharFilter(lookup_expr='icontains')
-    genre = django_filters.CharFilter(lookup_expr = 'icontains')
+    title = django_filters.CharFilter(lookup_expr='icontains', label="Tytul")
+    author = django_filters.CharFilter(lookup_expr='icontains', label="Autor")
+    genre = django_filters.CharFilter(lookup_expr = 'icontains', label="Rodzaj")
     # genre = django_filters.ModelMultipleChoiceFilter(queryset=Bookshelf.objects.value('genre'),
     #                                                  widget=forms.CheckboxSelectMultiple)
 

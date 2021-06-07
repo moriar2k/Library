@@ -1,32 +1,63 @@
 {% extends "main_library/base.html" %}
+
 {% block content %}
 
-<div class="row" style="background-color: #ECEBE8; font-family:Vontana">
-    <div align="center">
-    <h1> <b> Lista wszystkich książek </b> </h1>
-    </div>
-</div>
+<style>
 
-<div class="row" style = "backgroundcolor: #F9F8F7">
-    <br><br>
-    <div class = "col-md-2" align="right">
-        <a href="/"> Wróć do strony głównej </a>
-    </div>
-    <br><br>
+    table {
+  width: 100%;
+  border: 1px solid #000;
+  background-color: white;
+}
 
+td {
+  width: 25%;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+}
+
+caption {
+  padding: 0.3em;
+}
+th {
+background-color: #ACACAD;
+  width: 25%;
+  text-align: left;
+  vertical-align: center;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+
+}
+
+</style>
+
+
+
+<div class="navbar">
+  <a href="/#home">Biblioteka</a>
+  <a href="/index">Zbior książek</a>
+  <a href="/login"">Logowanie</a>
+  <a href="/register">Rejestracja</a>
 </div>
 
 
 <div class="row">
-    <div class="col-md-1"></div>
+    <div class="col-md-4"></div>
     <div class="col-md-5">
-        <form method="get">
+        <form method="get" >
              {{ table_filter.form.as_p }}
             <button type="submit" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search"></span> Search
           </button>
+            <br><br>
         </form>
-        <table class="table table-dark table-striped" >
+        <table class="table" >
             <thead>
               <tr>
                   <th>Tytuł</th>
@@ -35,7 +66,7 @@
                   <th>Rodzaj</th>
                   <th>Epoka</th>
                   <th>Ilość dostępnych książek</th>
-                  <th> Wypozycz</th>
+                  <th>Wypozycz</th>
               </tr>
             </thead>
                 {% for n in table_filter.qs %}

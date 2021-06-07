@@ -2,10 +2,10 @@ django==3.2.3
 django-filter
 ipython
 selenium
-unittest
-urlparse
 django-crispy-forms
 django-admin
 django[argon2]
 django[bcrypt]
 requests
+unittest
+urlparse
