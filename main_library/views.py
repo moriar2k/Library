@@ -12,7 +12,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home_page(request):
-    return render(request, 'main_library/home_page.html', {})
+    username = request.user
+    return render(request, 'main_library/home_page.html', {'login' : username})
 
 
 def index(request):
@@ -26,10 +27,10 @@ def index(request):
     )
 
 @login_required
-def wypozycz(request, id):
+def details(request, id):
     return render(
         request,
-        "main_library/wypozycz.html",
+        "main_library/details.html",
         {}
     )
 
@@ -65,4 +66,4 @@ def register_request(request):
 
 def logout_request(request):
     logout(request)
-    return render(request, 'main_library/home_page.html', {})
+    return redirect('/')

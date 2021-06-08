@@ -46,7 +46,7 @@
                     <td> {{ n.kind }} </td>
                     <td> {{ n.epoch }} </td>
                     <td> {{ n.quantity }} </td>
-                    <td> <a href="{% url 'wypozycz' n.id %}"> Wypożycz </a> </td>
+                    <td> <a href="{% url 'details' n.id %}"> Details </a> </td>
                 </tr>
                 {% endfor %}
         </table>
