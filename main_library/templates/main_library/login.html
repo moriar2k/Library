@@ -1,13 +1,19 @@
 {% extends 'main_library/base.html' %}
 
 {% block content %}
+
 {% load crispy_forms_tags %}
-    <div class="container">
-        <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-            <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Zaloguj</button>
-        </form>
-        Jeszcze nie zarejestrowany? <a href="/register" target="blank"><strong>Naduś tutaj</strong></a>!
-    </div>
+<a href="/"> Wróć do strony głównej </a>
+<!--Login-->
+<div class="container py-5">
+  <h1>Login</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ login_form|crispy }}
+    <button class="btn btn-primary" type="submit">Zaloguj</button>
+    <button class="btn btn-primary" type="submit">Zarejestruj się</button>
+  </form>
+  <p class="text-center">Nie wierzę... ale jak nie masz jeszcze konta to ...<a href="/register">naduś tutaj</a>.</p>
+</div>
+
 {% endblock %}

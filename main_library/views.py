@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NewUserForm
@@ -24,7 +25,7 @@ def index(request):
         {'all_books': obj, 'table_filter': table_filter}
     )
 
-
+@login_required
 def wypozycz(request, id):
     return render(
         request,
@@ -42,11 +43,14 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.info(request, f"sukces !!! Zalogowano:  {username}.")
                 return redirect('/')
+            else:
+                messages.error(request, "Ups ...")
+        else:
+            messages.error(request, "Ups ...")
     form = AuthenticationForm()
-    return render(request=request,
-                  template_name="main_library/login.html",
-                  context={"form": form})
+    return render(request=request, template_name="main_library/login.html", context={"login_form": form})
 
 
 def register_request(request):

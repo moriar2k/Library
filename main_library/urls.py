@@ -10,4 +10,5 @@ urlpatterns = [
     # path('<int:question_id>', views.detail, name='detail'),
     path('index/wypozycz/<int:id>', views.wypozycz, name = 'wypozycz'),
     path("register", views.register_request, name="register"),
+    path("login", views.login_request, name="login"),
     ]
