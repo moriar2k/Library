@@ -2,11 +2,43 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-    <div class="container">
-        <form method="POST">
+
+
+<!--<div class="navbar">-->
+<!--  <a href="/#home">Biblioteka</a>-->
+<!--  <a href="/index">Zbior książek</a>-->
+<!--  <a href="/login"">Logowanie</a>-->
+<!--  <a href="/register">Rejestracja</a>-->
+<!--</div>-->
+
+
+<style>
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  width: 285px;
+  margin: -140px 0 0 -182px;
+  padding: 40px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  h2 {
+    margin: 0 0 20px;
+    line-height: 1;
+    color: #44c4e7;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+</style>
+
+
+    <div class="form">
+        <form method="POST" class="login">
         {% csrf_token %}
         {{form.as_p}}
-            <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Zaloguj</button>
+            <button class="btn btn-primary" type="submit">Zaloguj</button>
         </form>
         Jeszcze nie zarejestrowany? <a href="/register" target="blank"><strong>Naduś tutaj</strong></a>!
     </div>

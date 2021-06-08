@@ -1,11 +1,41 @@
 {% extends "main_library/base.html" %}
 {% block content %}
 
-<div class="row" style="background-color: #ECEBE8; font-family:Vontana">
-    <div align="center">
-    <h1> <b> Lista wszystkich książek </b> </h1>
-    </div>
-</div>
+<style>
+
+    table {
+  width: 100%;
+  border: 1px solid #000;
+  background-color: white;
+}
+
+td {
+  width: 25%;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+}
+
+caption {
+  padding: 0.3em;
+}
+th {
+background-color: #ACACAD;
+  width: 25%;
+  text-align: left;
+  vertical-align: center;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+
+}
+
+</style>
+
 
 <div class="row" style = "backgroundcolor: #F9F8F7">
     <br><br>
@@ -14,7 +44,6 @@
     </div>
     <br><br>
 
-</div>
 
 
 <div class="row">
