@@ -11,4 +11,5 @@ urlpatterns = [
     # path('<int:question_id>', views.detail, name='detail'),
     path('index/details/<int:id>', views.details, name = 'details'),
     path("register/", views.register_request, name="register"),
+    path('index/details/<int:id>/rent', views.rent, name = 'rent'),
     ]
