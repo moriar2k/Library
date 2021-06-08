@@ -3,9 +3,3 @@ django-filter
 ipython
 selenium
 django-crispy-forms
-django-admin
-django[argon2]
-django[bcrypt]
-requests
-unittest
-urlparse

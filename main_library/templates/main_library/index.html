@@ -1,7 +1,5 @@
 {% extends "main_library/base.html" %}
-
 {% block content %}
-
 
 <style>
 
@@ -39,19 +37,25 @@ background-color: #ACACAD;
 </style>
 
 
+<div class="row" style = "backgroundcolor: #F9F8F7">
+    <br><br>
+    <div class = "col-md-2" align="right">
+        <a href="/"> Wróć do strony głównej </a>
+    </div>
+    <br><br>
+
 
 
 <div class="row">
-    <div class="col-md-4"></div>
+    <div class="col-md-1"></div>
     <div class="col-md-5">
-        <form method="get" >
+        <form method="get">
              {{ table_filter.form.as_p }}
             <button type="submit" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search"></span> Search
           </button>
-            <br><br>
         </form>
-        <table class="table" >
+        <table class="table table-dark table-striped" >
             <thead>
               <tr>
                   <th>Tytuł</th>
@@ -60,7 +64,7 @@ background-color: #ACACAD;
                   <th>Rodzaj</th>
                   <th>Epoka</th>
                   <th>Ilość dostępnych książek</th>
-                  <th>Wypozycz</th>
+                  <th> Wypozycz</th>
               </tr>
             </thead>
                 {% for n in table_filter.qs %}
@@ -71,7 +75,7 @@ background-color: #ACACAD;
                     <td> {{ n.kind }} </td>
                     <td> {{ n.epoch }} </td>
                     <td> {{ n.quantity }} </td>
-                    <td> <a href="{% url 'wypozycz' n.id %}/"> Wypożycz </a> </td>
+                    <td> <a href="{% url 'details' n.id %}"> Details </a> </td>
                 </tr>
                 {% endfor %}
         </table>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import random
 
 
@@ -11,3 +12,11 @@ class Bookshelf(models.Model):
     epoch = models.TextField(default='')
     genre = models.TextField(default='')
     quantity = models.IntegerField(default=random.randint(0, 10))
+
+class RentalList(models.Model):
+    book_id = models.ForeignKey(Bookshelf, default=None, on_delete=models.SET_DEFAULT)
+    user_id = models.ForeignKey(User, default=None, on_delete=models.SET_DEFAULT)
+    check_out_date = models.DateTimeField(auto_now_add=True)
+    planned_date_of_return = models.DateTimeField(default=None)
+    date_of_return = models.DateTimeField(default=None)
+    status = models.TextField(default='Active')
