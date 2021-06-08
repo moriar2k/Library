@@ -70,8 +70,28 @@ def logout_request(request):
 	return redirect('/')
 
 def rent(request, id):
-	user_id  = request.user.id
+	user_id  = User.objects.get(pk = request.user.id)
 	username = request.user.username
+
+	if request.method == 'POST':
+
+		start = request.POST['start_date']
+		end = request.POST['end_date']
+		book_id = Bookshelf.objects.get(pk=id)
+
+		if book_id.quantity >0:
+			book_id.quantity -=1
+			book_id.save()
+
+			RentalList.objects.create(book_id = book_id, user_id = user_id, check_out_date = start,
+				planned_date_of_return=end)
+			return render(request, 'main_library/successful_rent.html', {'book' : book_id,
+				})
+		else:
+			return render(request, 'main_library/failed_rent.html', {'book' : book_id,
+				})
 
 	return render(request, 'main_library/rent.html', {'user_id' : user_id,
 		'username' : username})
+
+

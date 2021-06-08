@@ -35,19 +35,10 @@ background-color: #ACACAD;
 }
 
 </style>
-<body>
-  <h2>
-    Test
-  </h2>
 
-<form method="POST">{% csrf_token %}        
-    <p>Start date<input type = 'date'  name='start_date' ></p>
-    <p>End date<input type = 'date'  name='end_date' ></p>
-    <button type="submit">Rent</button>
-</form>
+<h2>Niestety pozycja {{ book.title }} obecnie jest niedostępna. Spróbuj ponownie później!. </h2>
+<a href="/index"> Wróć do przeglądania listy książęk</a><br>
+<a href="/"> Wróć do strony głównej </a>
 
-</body>
-{{ start }}
 
-{{ end }}
 {% endblock %}
