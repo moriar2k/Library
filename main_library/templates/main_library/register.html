@@ -4,49 +4,16 @@
 
 {% load crispy_forms_tags %}
 
-<style>
-
-.form {
-  position: absolute;
-  top: 25%;
-  left: 45%;
-  background: #fff;
-  width: 550px;
-  margin: -140px 0 0 -182px;
-  padding: 40px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  h2 {
-    margin: 0 0 20px;
-    line-height: 1;
-    color: #44c4e7;
-    font-size: 18px;
-    font-weight: 400;
-  }
-}
-</style>
-
-
-<div class="navbar">
-  <a href="/#home">Biblioteka</a>
-  <a href="/index">Zbior książek</a>
-  <a href="/login"">Logowanie</a>
-  <a href="/register">Rejestracja</a>
-</div>
-
 <!--Register--> 
-<div class="register-form mt-3 mb-3">
-	 <div class="form">
-          <div class="row">
-			<h1>Rejestracja użytkownika</h1>
-			<p>* (gwiazdka) - to pola wymagane </p>
-			<form method="POST">
-				{% csrf_token %}
-				{{ register_form|crispy }}
-				<button class="btn btn-primary" type="submit">Zatwierdź</button>
-			</form>
-			<p class="text-center">Jeśli jednak masz już konto, <a href="/login"><u>naduś tutaj</u></a> lepiej.</p>
-		  </div>
-	 </div>
+<div class="container py-5">
+	<h1>Rejestracja użytkownika</h1>
+	<p>* (gwiazdka) - to pola wymagane </p>
+	<form method="POST">
+		{% csrf_token %}
+		{{ register_form|crispy }}
+		<button class="btn btn-primary" type="submit">Zatwierdź</button>
+	</form>
+	<p class="text-center">Jeśli jednak masz już konto, <a href="/login"><u>naduś tutaj</u></a> lepiej.</p>
 </div>
 
 {% endblock %}
