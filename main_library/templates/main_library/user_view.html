@@ -1,0 +1,21 @@
+{% extends "main_library/base.html" %}
+{% block content %}
+
+<h1>Welcome {{user}}</h1>
+
+<table class="table table-dark table-striped" >
+            <thead>
+              <tr>
+                  <th>User</th>
+                  <th>books</th>
+              </tr>
+            </thead>
+                {% for n in books.qs %}
+                <tr>
+                    <td>{{ n.title }} </td>
+                    <td> {{ n.book_id }} </td>
+                </tr>
+                {% endfor %}
+        </table>
+
+{% endblock %}
