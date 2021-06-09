@@ -1,21 +1,30 @@
 {% extends "main_library/base.html" %}
 {% block content %}
 
-<h1>Welcome {{user}}</h1>
+<h1>Dzień dobry, {{ name }} </h1>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
 
 <table class="table table-dark table-striped" >
             <thead>
               <tr>
-                  <th>User</th>
-                  <th>books</th>
+                  <th>Użytjownik</th>
+                  <th>Książka</th>
+                  <th>Autor</th>
               </tr>
             </thead>
-                {% for n in books.qs %}
+                {% for n in books %}
                 <tr>
-                    <td>{{ n.title }} </td>
-                    <td> {{ n.book_id }} </td>
+                    <td> {{ n.user_id }} </td>
+                    <td> {{ n.book_id.title }} </td>
+                    <td> {{ n.book_id.author }} </td>
                 </tr>
                 {% endfor %}
         </table>
 
 {% endblock %}
+
+            </div>
+</div>
