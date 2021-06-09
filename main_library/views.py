@@ -75,7 +75,7 @@ def rent(request, id):
 
 	if request.method == 'POST':
 
-		start = request.POST['start_date']
+		# start = request.POST['start_date']
 		end = request.POST['end_date']
 		book_id = Bookshelf.objects.get(pk=id)
 
@@ -83,7 +83,7 @@ def rent(request, id):
 			book_id.quantity -=1
 			book_id.save()
 
-			RentalList.objects.create(book_id = book_id, user_id = user_id, check_out_date = start,
+			RentalList.objects.create(book_id = book_id, user_id = user_id,
 				planned_date_of_return=end)
 			return render(request, 'main_library/successful_rent.html', {'book' : book_id,
 				})
