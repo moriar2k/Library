@@ -98,8 +98,11 @@ def rent(request, id):
 
 
 def user_view(request):
+
     if request.user.is_authenticated:
-        books = RentalList.objects.filter(user_id = request.user)
-        return render(request, 'main_library/user_view.html', {'name': request.user, 'books': books})
+        user_id = User.objects.get(pk = request.user.id)
+        books = RentalList.objects.filter(user_id = request.user.id)
+            # filter(user_id_id = user_id
+        return render(request, 'main_library/user_view.html', {'name': request.user.username, 'books': books})
     else:
-        return HttpResponseRedirect("/login/")
+        return redirect("login")
