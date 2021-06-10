@@ -1,18 +1,20 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NewUserForm
-from .models import Bookshelf
+from .models import Bookshelf, RentalList
 from django.contrib.auth.models import User
 from .filters import UserFilter
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
 def home_page(request):
-    return render(request, 'main_library/home_page.html', {})
+    username = request.user
+    return render(request, 'main_library/home_page.html', {'login': username})
 
 
 def index(request):
@@ -25,12 +27,14 @@ def index(request):
         {'all_books': obj, 'table_filter': table_filter}
     )
 
+
 @login_required
-def wypozycz(request, id):
+def details(request, id):
+    book_details = Bookshelf.objects.get(pk=id)
     return render(
         request,
-        "main_library/wypozycz.html",
-        {}
+        "main_library/details.html",
+        {'book_details': book_details}
     )
 
 
@@ -43,14 +47,13 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f"sukces !!! Zalogowano:  {username}.")
+                messages.success(request, "świetnie. Logownie powiodło się ;).")
                 return redirect('/')
-            else:
-                messages.error(request, "Ups ...")
-        else:
-            messages.error(request, "Ups ...")
+            messages.error(request, "Hmmm... coś poszło nie tak.")
     form = AuthenticationForm()
-    return render(request=request, template_name="main_library/login.html", context={"login_form": form})
+    return render(request=request,
+                  template_name="main_library/login.html",
+                  context={"form": form})
 
 
 def register_request(request):
@@ -64,3 +67,17 @@ def register_request(request):
         messages.error(request, "Ups coś poszło nie tak.")
     form = NewUserForm
     return render(request=request, template_name="main_library/register.html", context={"register_form": form})
+
+
+def logout_request(request):
+    logout(request)
+    messages.success(request, "wylogowałeś się.")
+    return redirect('/')
+
+
+def rent(request, id):
+    user_id = request.user.id
+    username = request.user.username
+
+    return render(request, 'main_library/rent.html', {'user_id': user_id,
+                                                      'username': username})

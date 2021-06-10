@@ -36,7 +36,7 @@ background-color: #ACACAD;
 
 </style>
 
-
+<h1>Szczegóły książki</h1>
 <div class="row" style = "backgroundcolor: #F9F8F7">
     <br><br>
     <div class = "col-md-2" align="right">
@@ -49,12 +49,6 @@ background-color: #ACACAD;
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-5">
-        <form method="get">
-             {{ table_filter.form.as_p }}
-            <button type="submit" class="btn btn-primary">
-                <span class="glyphicon glyphicon-search"></span> Search
-          </button>
-        </form>
         <table class="table table-dark table-striped" >
             <thead>
               <tr>
@@ -67,17 +61,15 @@ background-color: #ACACAD;
                   <th> Wypozycz</th>
               </tr>
             </thead>
-                {% for n in table_filter.qs %}
                 <tr>
-                    <td>{{ n.title }} </td>
-                    <td> {{ n.author }}</td>
-                    <td> {{ n.genre }} </td>
-                    <td> {{ n.kind }} </td>
-                    <td> {{ n.epoch }} </td>
-                    <td> {{ n.quantity }} </td>
-                    <td> <a href="{% url 'details' n.id %}"> Details </a> </td>
+                    <td>{{ book_details.title }} </td>
+                    <td> {{ book_details.author }}</td>
+                    <td> {{ book_details.genre }} </td>
+                    <td> {{ book_details.kind }} </td>
+                    <td> {{ book_details.epoch }} </td>
+                    <td> {{ book_details.quantity }} </td>
+                    <td> <a href="{% url 'rent' book_details.id %}"> Wypożycz </a> </td>
                 </tr>
-                {% endfor %}
         </table>
     </div>
 </div>

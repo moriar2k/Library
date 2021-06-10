@@ -1,0 +1,47 @@
+{% extends "main_library/base.html" %}
+{% block content %}
+
+<style>
+
+    table {
+  width: 100%;
+  border: 1px solid #000;
+  background-color: white;
+}
+
+td {
+  width: 25%;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+}
+
+caption {
+  padding: 0.3em;
+}
+th {
+background-color: #ACACAD;
+  width: 25%;
+  text-align: left;
+  vertical-align: center;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+
+}
+
+</style>
+<body>
+  <h2>
+    Test
+  </h2>
+{{ username }}
+{{ user_id }}
+
+</body>
+
+{% endblock %}
