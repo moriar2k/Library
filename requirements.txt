@@ -3,3 +3,5 @@ django-filter
 ipython
 selenium
 django-crispy-forms
+django[argon2]
+django[bcrypt]

@@ -9,6 +9,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Min
+from django.utils import timezone
 
 
 # Create your views here.
@@ -101,10 +103,16 @@ def rent(request, id):
 def user_view(request):
 
     if request.user.is_authenticated:
+        min_planned_date =  RentalList.objects.filter(user_id = request.user.id).filter(status='Active').order_by('planned_date_of_return').first()
         user_id = User.objects.get(pk = request.user.id)
         books = RentalList.objects.filter(user_id = request.user.id).order_by('status', '-date_of_return')
+        if min_planned_date.planned_date_of_return < timezone.now():
+            alert_marker = 'Y'
+        else:
+            alert_marker = 'N'
             # filter(user_id_id = user_id
-        return render(request, 'main_library/user_view.html', {'name': request.user.username, 'books': books})
+        return render(request, 'main_library/user_view.html', {'name': request.user.username, 
+            'books': books, 'alert_marker' : alert_marker, 'min_planned_date' : min_planned_date})
     else:
         return redirect("login")
 

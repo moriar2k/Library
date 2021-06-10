@@ -1,7 +1,49 @@
 {% extends "main_library/base.html" %}
 {% block content %}
+<style>
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert2 {
+  padding: 20px;
+  background-color: #43F436;
+  color: white;
+}
+
+}
+.closebtn:hover {
+  color: black;
+}
+</style>
 
 <h1>Dzień dobry, {{ name }} </h1>
+{% if alert_marker == 'Y' %}
+  <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Uwaga!</strong> Na liście wypożyczeń znjdują się pozycje, którym upłynął termin zwrotu!!!
+</div>;
+{% else %}
+  <div class="alert2">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Sukces!</strong>Obecnie nie posiadasz książek, których termin oddania upłynał!
+</div>;
+
+{% endif %}
+
 
 <div class="row">
     <div class="col-md-1"></div>
