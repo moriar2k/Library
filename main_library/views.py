@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NewUserForm
@@ -101,8 +102,23 @@ def user_view(request):
 
     if request.user.is_authenticated:
         user_id = User.objects.get(pk = request.user.id)
-        books = RentalList.objects.filter(user_id = request.user.id)
+        books = RentalList.objects.filter(user_id = request.user.id).order_by('status', '-date_of_return')
             # filter(user_id_id = user_id
         return render(request, 'main_library/user_view.html', {'name': request.user.username, 'books': books})
     else:
         return redirect("login")
+
+def return_book(request, id):
+    list_postition_to_return = RentalList.objects.get(pk = id)
+    if list_postition_to_return.status == 'Active':
+        list_postition_to_return.status = 'Returned'
+        list_postition_to_return.date_of_return = datetime.now()
+        list_postition_to_return.save()
+
+        book_id = list_postition_to_return.book_id
+        book_id.quantity +=1
+        book_id.save()
+
+        return redirect("user_view") 
+    return redirect("user_view") 
+

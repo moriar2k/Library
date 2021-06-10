@@ -13,6 +13,12 @@
                   <th>Użytjownik</th>
                   <th>Książka</th>
                   <th>Autor</th>
+                  <th>Data wypożyczenia</th>
+                  <th>Planowana data zwrotu</th>
+                  <th>Data zwrotu</th>
+                  <th>Status</th>
+                  <th>Action</th>
+
               </tr>
             </thead>
                 {% for n in books %}
@@ -20,6 +26,11 @@
                     <td> {{ n.user_id }} </td>
                     <td> {{ n.book_id.title }} </td>
                     <td> {{ n.book_id.author }} </td>
+                    <td> {{ n.check_out_date }} </td>
+                    <td> {{ n.planned_date_of_return }} </td>
+                    <td> {{ n.date_of_return }} </td>
+                    <td> {{ n.status }} </td>
+                    <td> <a href="{% url 'return_book' n.id %}"> Return </a> </td>
                 </tr>
                 {% endfor %}
         </table>
