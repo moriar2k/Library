@@ -75,6 +75,7 @@ body {
 .subnav:hover .subnav-content {
   display: block;
 }
+<<<<<<< HEAD
 
 </style>
 
@@ -91,6 +92,19 @@ body {
     <a href="/register">Rejestracja</a>
 
     {%endif%}
+=======
+</style>
+
+
+
+<div class="navbar">
+  <a href="/#home">Biblioteka</a>
+  <a href="/index">Zbior książek</a>
+  <a href="/login">Logowanie</a>
+  <a href="/logout">Wyloguj {{ login }}</a>
+  <a href="/register">Rejestracja</a>
+    <a href="/user_view"> Panel użytkownika </a>
+>>>>>>> 629dcdea52361b94bcb1f3203b893bd099d51585
 </div>
 
 {% block content %}

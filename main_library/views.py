@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NewUserForm
@@ -8,7 +9,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 
+=======
+>>>>>>> 629dcdea52361b94bcb1f3203b893bd099d51585
 
 
 # Create your views here.
@@ -71,13 +75,68 @@ def register_request(request):
 
 def logout_request(request):
     logout(request)
+<<<<<<< HEAD
     messages.success(request, "wylogowałeś się.")
+=======
+>>>>>>> 629dcdea52361b94bcb1f3203b893bd099d51585
     return redirect('/')
 
 
 def rent(request, id):
+<<<<<<< HEAD
     user_id = request.user.id
     username = request.user.username
 
     return render(request, 'main_library/rent.html', {'user_id': user_id,
                                                       'username': username})
+=======
+    user_id = User.objects.get(pk=request.user.id)
+    username = request.user.username
+
+    if request.method == 'POST':
+
+        # start = request.POST['start_date']
+        end = request.POST['end_date']
+        book_id = Bookshelf.objects.get(pk=id)
+
+        if book_id.quantity > 0:
+            book_id.quantity -= 1
+            book_id.save()
+
+            RentalList.objects.create(book_id=book_id, user_id=user_id,
+                                      planned_date_of_return=end)
+            return render(request, 'main_library/successful_rent.html', {'book': book_id,
+                                                                         })
+        else:
+            return render(request, 'main_library/failed_rent.html', {'book': book_id,
+                                                                     })
+
+    return render(request, 'main_library/rent.html', {'user_id': user_id,
+                                                      'username': username})
+
+
+def user_view(request):
+
+    if request.user.is_authenticated:
+        user_id = User.objects.get(pk = request.user.id)
+        books = RentalList.objects.filter(user_id = request.user.id).order_by('status', '-date_of_return')
+            # filter(user_id_id = user_id
+        return render(request, 'main_library/user_view.html', {'name': request.user.username, 'books': books})
+    else:
+        return redirect("login")
+
+def return_book(request, id):
+    list_postition_to_return = RentalList.objects.get(pk = id)
+    if list_postition_to_return.status == 'Active':
+        list_postition_to_return.status = 'Returned'
+        list_postition_to_return.date_of_return = datetime.now()
+        list_postition_to_return.save()
+
+        book_id = list_postition_to_return.book_id
+        book_id.quantity +=1
+        book_id.save()
+
+        return redirect("user_view") 
+    return redirect("user_view") 
+
+>>>>>>> 629dcdea52361b94bcb1f3203b893bd099d51585

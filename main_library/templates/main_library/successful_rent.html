@@ -35,26 +35,10 @@ background-color: #ACACAD;
 }
 
 </style>
-<body>
-  <h2>
-    Test
-  </h2>
-<<<<<<< HEAD
-{{ username }}
-{{ user_id }}
 
-</body>
+<h2>Udało Ci się wypożyczyć {{ book.title }}</h2>
+<a href="/index"> Wróć do przeglądania listy książęk</a><br>
+<a href="/"> Wróć do strony głównej </a>
 
-=======
 
-<form method="POST">{% csrf_token %}        
-    <p>Data zwrotu<input type = 'date'  name='end_date' ></p>
-    <button type="submit">Rent</button>
-</form>
-
-</body>
-{{ start }}
-
-{{ end }}
->>>>>>> 629dcdea52361b94bcb1f3203b893bd099d51585
 {% endblock %}
