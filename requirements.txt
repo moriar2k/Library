@@ -5,3 +5,7 @@ selenium
 django-crispy-forms
 django[argon2]
 django[bcrypt]
+
+
+
+test
