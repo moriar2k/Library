@@ -115,7 +115,7 @@ def user_view(request):
         except:
             alert_marker = 'N'
         user_id = User.objects.get(pk = request.user.id)
-        books = RentalList.objects.filter(user_id = request.user.id).order_by('status', '-date_of_return')
+        books = RentalList.objects.filter(user_id = request.user.id, status = 'Active').order_by('status', '-date_of_return')
             # filter(user_id_id = user_id
         return render(request, 'main_library/user_view.html', {'name': request.user.username, 
             'books': books, 'alert_marker' : alert_marker, 'min_planned_date' : min_planned_date})

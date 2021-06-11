@@ -82,7 +82,7 @@ body {
 <div class="navbar">
   <a href="/#home">Biblioteka</a>
   <a href="/index">Zbior książek</a>
-
+  <a href="/user_view"> Panel użytkownika </a>
   {% if user.is_authenticated %}
 
   <a href="/logout">Wyloguj {{ login }}</a>
@@ -92,7 +92,6 @@ body {
   <a href="/register">Rejestracja</a>
 
   {%endif%}
-    <a href="/user_view"> Panel użytkownika </a>
 </div>
 
 {% block content %}

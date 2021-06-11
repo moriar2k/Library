@@ -1,46 +1,14 @@
 {% extends "main_library/base.html" %}
 {% block content %}
 
-<style>
-
-    table {
-  width: 100%;
-  border: 1px solid #000;
-  background-color: white;
-}
-
-td {
-  width: 25%;
-  text-align: left;
-  vertical-align: top;
-  border: 1px solid #000;
-  border-collapse: collapse;
-  padding: 0.3em;
-  caption-side: bottom;
-}
-
-caption {
-  padding: 0.3em;
-}
-th {
-background-color: #ACACAD;
-  width: 25%;
-  text-align: left;
-  vertical-align: center;
-  border: 1px solid #000;
-  border-collapse: collapse;
-  padding: 0.3em;
-  caption-side: bottom;
-
-}
-
-</style>
-
-<h2>Niestety pozycja {{ book.title }} obecnie jest niedostępna. Spróbuj ponownie później, albo zapisz się na listę rezerwowych!. </h2>
+<div class="col-md-5">
+<h2>Niestety pozycja {{ book.title }} obecnie jest niedostępna.</h2>
+<h3>Spróbuj ponownie później, albo zapisz się na listę rezerwowych!. </h3>
 
 <a href='pending_list'> Zapisz się na listę oczekujących na książkę </a><br>
-<a href="/index"> Wróć do przeglądania listy książęk</a><br>
-<a href="/"> Wróć do strony głównej </a>
+
+<!--<a href="/index"> Wróć do przeglądania listy książęk</a><br>-->
+<!--<a href="/"> Wróć do strony głównej </a>-->
 
 
 {% endblock %}
