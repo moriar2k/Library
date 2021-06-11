@@ -20,3 +20,8 @@ class RentalList(models.Model):
     planned_date_of_return = models.DateTimeField(default=None, null=True)
     date_of_return = models.DateTimeField(default=None, null=True)
     status = models.TextField(default='Active')
+
+class BooksNotAvailable(models.Model):
+    book_id = models.ForeignKey(Bookshelf, default=None, on_delete=models.SET_DEFAULT)
+    user_id = models.ForeignKey(User, default=None, on_delete=models.SET_DEFAULT)
+

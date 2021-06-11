@@ -2,7 +2,7 @@ from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NewUserForm
-from .models import Bookshelf, RentalList
+from .models import Bookshelf, RentalList, BooksNotAvailable
 from django.contrib.auth.models import User
 from .filters import UserFilter
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -88,6 +88,9 @@ def rent(request, id):
             book_id.quantity -= 1
             book_id.save()
 
+            if BooksNotAvailable.objects.filter(book_id=book_id).filter(user_id=user_id) != []:
+                BooksNotAvailable.objects.filter(book_id=book_id).filter(user_id=user_id).delete()
+
             RentalList.objects.create(book_id=book_id, user_id=user_id,
                                       planned_date_of_return=end)
             return render(request, 'main_library/successful_rent.html', {'book': book_id,
@@ -103,13 +106,16 @@ def rent(request, id):
 def user_view(request):
 
     if request.user.is_authenticated:
-        min_planned_date =  RentalList.objects.filter(user_id = request.user.id).filter(status='Active').order_by('planned_date_of_return').first()
+        try:
+            min_planned_date =  RentalList.objects.filter(user_id = request.user.id).filter(status='Active').order_by('planned_date_of_return').first()
+            if min_planned_date.planned_date_of_return < timezone.now():
+                alert_marker = 'Y'
+            else:
+                alert_marker = 'N'
+        except:
+            alert_marker = 'N'
         user_id = User.objects.get(pk = request.user.id)
         books = RentalList.objects.filter(user_id = request.user.id).order_by('status', '-date_of_return')
-        if min_planned_date.planned_date_of_return < timezone.now():
-            alert_marker = 'Y'
-        else:
-            alert_marker = 'N'
             # filter(user_id_id = user_id
         return render(request, 'main_library/user_view.html', {'name': request.user.username, 
             'books': books, 'alert_marker' : alert_marker, 'min_planned_date' : min_planned_date})
@@ -129,4 +135,15 @@ def return_book(request, id):
 
         return redirect("user_view") 
     return redirect("user_view") 
+
+def pending_list(request, id):
+    user_id = User.objects.get(pk=request.user.id)
+    book_id = Bookshelf.objects.get(pk=id)
+    BooksNotAvailable.objects.create(book_id=book_id, user_id=user_id)
+    return render(request, 'main_library/spectators.html', {'book': book_id})
+
+def books_not_avaible(request):
+    user_id = User.objects.get(pk=request.user.id)
+    books = BooksNotAvailable.objects.filter(user_id=user_id)
+    return render(request, 'main_library/pending_list.html', {'books' : books})
 

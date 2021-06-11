@@ -13,5 +13,7 @@ urlpatterns = [
     path("register/", views.register_request, name="register"),
     path('index/details/<int:id>/rent', views.rent, name = 'rent'),
     path('user_view/', views.user_view, name='user_view'),
-    path('index/details/<int:id>/return', views.return_book, name = 'return_book')
+    path('index/details/<int:id>/return', views.return_book, name = 'return_book'),
+    path('index/details/<int:id>/pending_list', views.pending_list, name = 'pending_list'),
+    path('books_not_avaible/', views.books_not_avaible, name='books_not_avaible'),
     ]
